@@ -281,4 +281,3 @@ if __name__ == '__main__':
     # Build main app and begin loop
     app = MainApp(window, folders)
     window.mainloop()
-    
