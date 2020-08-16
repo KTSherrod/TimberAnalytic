@@ -1,3 +1,10 @@
+# Author: Tyler Sherrod
+# Created: 16 August 2020
+
+# Timber Analytic - Image Pre-processing script
+
+# This script allows the user to cycle through images, identifying specific objects in the image and designating their location in the image.
+
 import os
 import shutil
 import sys
@@ -174,8 +181,6 @@ class MainApp:
             NextButtonY = H - 130
 
             if setup:
-                print('Entrance into setup')
-
                 self.main = tk.Canvas(window, width=W, height=H)
                 self.main.pack()
 
@@ -204,7 +209,6 @@ class MainApp:
                 window.bind("<Return>", self.ReturnPress)
                 window.bind("<BackSpace>", self.DeletePress)
 
-                print('Complete setup')
             else:
                 # Adjust window size
                 self.main.config(width=W, height=H)
@@ -215,8 +219,6 @@ class MainApp:
                 self.main.itemconfig(self.currentImage, image=image)
 
             del self.imageList[0]
-
-            print('Complete loadImage')
             
             return 0
 
@@ -267,13 +269,16 @@ class MainApp:
 
 if __name__ == '__main__':
     
+    # Set up initial window
     window = tk.Tk()
     
+    # Prompy user for selection of folder location and lot identifier
     folderPath, unitName = userInput()
 
+    # Check/build folders corresponding to image lot numbers
     folders = createFolders(folderPath, unitName)
 
+    # Build main app and begin loop
     app = MainApp(window, folders)
-    print('Entrance into mainloop')
     window.mainloop()
     
